@@ -29,7 +29,7 @@ TEST_PROG=  test/test-rbuf
 all: $(PROG) $(TEST_PROG)
 
 # Adjust $(HTSDIR) to point to your top-level htslib directory
-HTSDIR = ../htslib
+HTSDIR = htslib-1.1
 include $(HTSDIR)/htslib.mk
 HTSLIB = $(HTSDIR)/libhts.a
 BGZIP  = $(HTSDIR)/bgzip
