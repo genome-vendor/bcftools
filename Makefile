@@ -72,12 +72,6 @@ all:$(PROG) plugins
 
 # See htslib/Makefile
 PACKAGE_VERSION = 1.2
-ifneq "$(wildcard .git)" ""
-PACKAGE_VERSION := $(shell git describe --always --dirty)
-DOC_VERSION :=  $(shell git describe --always)+
-DOC_DATE := $(shell date +'%Y-%m-%d %R %Z')
-version.h: $(if $(wildcard version.h),$(if $(findstring "$(PACKAGE_VERSION)",$(shell cat version.h)),,force))
-endif
 version.h:
 	echo '#define BCFTOOLS_VERSION "$(PACKAGE_VERSION)"' > $@
 
