@@ -8,10 +8,10 @@ Use version as suffix for binaries
  1 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index e88861c..a2b3768 100644
+index 7add072..369bdc0 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -45,7 +45,7 @@ OBJS     = main.o vcfindex.o tabix.o \
+@@ -46,7 +46,7 @@ OBJS     = main.o vcfindex.o tabix.o \
             ccall.o em.o prob1.o kmin.o # the original samtools calling
  INCLUDES = -I. -I$(HTSDIR)
  
@@ -20,7 +20,7 @@ index e88861c..a2b3768 100644
  exec_prefix = $(prefix)
  bindir      = $(exec_prefix)/bin
  mandir      = $(prefix)/share/man
-@@ -134,8 +134,10 @@ docs: bcftools.html bcftools.1
+@@ -144,8 +144,10 @@ docs: bcftools.1 bcftools.html
  
  install: $(PROG)
  	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
