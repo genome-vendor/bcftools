@@ -1,2 +1,2 @@
 version=3
-http://sf.net/samtools/bcftools-(.+)\.tar\.bz2
+https://github.com/samtools/bcftools/releases/download/.+?/bcftools-(.*)\.tar\.bz2
