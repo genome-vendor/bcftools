@@ -46,7 +46,7 @@ OBJS     = main.o vcfindex.o tabix.o \
            ccall.o em.o prob1.o kmin.o # the original samtools calling
 INCLUDES = -I. -I$(HTSDIR)
 
-prefix      = /usr/local
+prefix      = /usr
 exec_prefix = $(prefix)
 bindir      = $(exec_prefix)/bin
 mandir      = $(prefix)/share/man
@@ -144,8 +144,10 @@ docs: bcftools.1 bcftools.html
 
 install: $(PROG)
 	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
-	$(INSTALL_PROGRAM) $(PROG) plot-vcfstats vcfutils.pl $(DESTDIR)$(bindir)
-	$(INSTALL_DATA) bcftools.1 $(DESTDIR)$(man1dir)
+	$(INSTALL_PROGRAM) -T $(PROG) $(DESTDIR)$(bindir)/$(PROG)$(PACKAGE_VERSION)
+	$(INSTALL_PROGRAM) -T plot-vcfstats $(DESTDIR)$(bindir)/plot-vcfstats$(PACKAGE_VERSION)
+	$(INSTALL_PROGRAM) -T vcfutils.pl $(DESTDIR)$(bindir)/vcfutils$(PACKAGE_VERSION)
+	$(INSTALL_DATA) -T bcftools.1 $(DESTDIR)$(man1dir)/bcftools$(PACKAGE_VERSION).1
 
 clean: testclean
 	-rm -f gmon.out *.o *~ $(PROG) version.h plugins/*.so
