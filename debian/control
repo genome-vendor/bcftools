@@ -1,0 +1,28 @@
+Source: bcftools1.0
+Section: science
+Priority: optional
+Maintainer: Genome Developers <genome-dev@genome.wustl.edu>
+Uploaders: Ian Ferguson <iferguso@genome.wustl.edu>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.2
+Homepage: http://www.htslib.org/
+Vcs-Git: git://github.com/samtools/bcftools.git
+Vcs-Browser: https://github.com/samtools/bcftools
+
+Package: bcftools1.0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, ${perl:Depends}
+Description: Utilities for variant calling and manipulating VCFs and BCFs
+ BCFtools is a set of utilities that manipulate variant calls in the Variant
+ Call Format (VCF) and its binary counterpart BCF. All commands work
+ transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.
+ .
+ Most commands accept VCF, bgzipped VCF and BCF with filetype detected
+ automatically even when streaming from a pipe. Indexed VCF and BCF will work
+ in all situations. Un-indexed VCF and BCF and streams will work in most, but
+ not all situations.
+ .
+ BCFtools is designed to work on a stream. It regards an input file "-" as the
+ standard input (stdin) and outputs to the standard output (stdout). Several
+ commands can thus be combined with Unix pipes.
