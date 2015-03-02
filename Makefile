@@ -55,7 +55,7 @@ ifdef USE_GPL
     LDLIBS  = -lgsl -lcblas
 endif
 
-prefix      = /usr/local
+prefix      = /usr
 exec_prefix = $(prefix)
 bindir      = $(exec_prefix)/bin
 mandir      = $(prefix)/share/man
@@ -165,8 +165,10 @@ docs: doc/bcftools.1 doc/bcftools.html
 
 install: $(PROG) doc/bcftools.1
 	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
-	$(INSTALL_PROGRAM) $(PROG) plot-vcfstats vcfutils.pl $(DESTDIR)$(bindir)
-	$(INSTALL_DATA) doc/bcftools.1 $(DESTDIR)$(man1dir)
+	$(INSTALL_PROGRAM) -T $(PROG) $(DESTDIR)$(bindir)/$(PROG)$(PACKAGE_VERSION)
+	$(INSTALL_PROGRAM) -T plot-vcfstats $(DESTDIR)$(bindir)/plot-vcfstats$(PACKAGE_VERSION)
+	$(INSTALL_PROGRAM) -T vcfutils.pl $(DESTDIR)$(bindir)/vcfutils$(PACKAGE_VERSION)
+	$(INSTALL_DATA) -T doc/bcftools.1 $(DESTDIR)$(man1dir)/bcftools$(PACKAGE_VERSION).1
 
 clean: testclean clean-plugins
 	-rm -f gmon.out *.o *~ $(PROG) version.h plugins/*.so plugins/*.P
