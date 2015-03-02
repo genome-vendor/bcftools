@@ -1,0 +1,36 @@
+From: Ian Ferguson <iferguso@genome.wustl.edu>
+Date: Mon, 2 Mar 2015 21:20:14 +0100
+Subject: [PATCH] Tweak install destinations in Makefile
+
+Use version as suffix for binaries
+---
+ Makefile |    8 +++++---
+ 1 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index e88861c..a2b3768 100644
+--- a/Makefile
++++ b/Makefile
+@@ -45,7 +45,7 @@ OBJS     = main.o vcfindex.o tabix.o \
+            ccall.o em.o prob1.o kmin.o # the original samtools calling
+ INCLUDES = -I. -I$(HTSDIR)
+ 
+-prefix      = /usr/local
++prefix      = /usr
+ exec_prefix = $(prefix)
+ bindir      = $(exec_prefix)/bin
+ mandir      = $(prefix)/share/man
+@@ -134,8 +134,10 @@ docs: bcftools.html bcftools.1
+ 
+ install: $(PROG)
+ 	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
+-	$(INSTALL_PROGRAM) $(PROG) plot-vcfstats vcfutils.pl $(DESTDIR)$(bindir)
+-	$(INSTALL_DATA) bcftools.1 $(DESTDIR)$(man1dir)
++	$(INSTALL_PROGRAM) -T $(PROG) $(DESTDIR)$(bindir)/$(PROG)$(PACKAGE_VERSION)
++	$(INSTALL_PROGRAM) -T plot-vcfstats $(DESTDIR)$(bindir)/plot-vcfstats$(PACKAGE_VERSION)
++	$(INSTALL_PROGRAM) -T vcfutils.pl $(DESTDIR)$(bindir)/vcfutils$(PACKAGE_VERSION)
++	$(INSTALL_DATA) -T bcftools.1 $(DESTDIR)$(man1dir)/bcftools$(PACKAGE_VERSION).1
+ 
+ clean: testclean
+ 	-rm -f gmon.out *.o *~ $(PROG) version.h plugins/*.so
+-- 

@@ -1,0 +1,26 @@
+From: Ian Ferguson <iferguso@genome.wustl.edu>
+Date: Mon, 2 Mar 2015 21:20:14 +0100
+Subject: [PATCH] No git in Makefile
+
+Don't try to figure out the current git revision as part of the build
+process.
+---
+ Makefile |    4 ----
+ 1 files changed, 0 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index a490f31..e88861c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -62,10 +62,6 @@ all:$(PROG) plugins
+ 
+ # See htslib/Makefile
+ PACKAGE_VERSION = 1.0
+-ifneq "$(wildcard .git)" ""
+-PACKAGE_VERSION := $(shell git describe --always --dirty)
+-version.h: $(if $(wildcard version.h),$(if $(findstring "$(PACKAGE_VERSION)",$(shell cat version.h)),,force))
+-endif
+ version.h:
+ 	echo '#define BCFTOOLS_VERSION "$(PACKAGE_VERSION)"' > $@
+ 
+-- 
