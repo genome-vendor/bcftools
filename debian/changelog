@@ -1,3 +1,9 @@
+bcftools1.2 (1.2-1) lucid; urgency=low
+
+  * Release bcftools version 1.2
+
+ -- Ian Ferguson <iferguso@genome.wustl.edu>  Mon, 02 Mar 2015 14:38:36 -0600
+
 bcftools1.1 (1.1-1) lucid; urgency=low
 
   * Release bcftools version 1.1
