@@ -52,7 +52,7 @@ INCLUDES = -I. -I$(HTSDIR)
 ifdef USE_GPL
     CFLAGS += -DUSE_GPL
     OBJS   += polysomy.o
-    LDLIBS  = -lgsl -lcblas
+    LDLIBS  = -lgsl -lgslcblas
 endif
 
 prefix      = /usr
