@@ -1,2 +1,0 @@
-bcftools1.1: binary-without-manpage usr/bin/plot-vcfstats1.1
-bcftools1.1: binary-without-manpage usr/bin/vcfutils1.1
