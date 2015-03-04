@@ -4,14 +4,14 @@ Subject: [PATCH] Tweak install destinations in Makefile
 
 Use version as suffix for binaries
 ---
- Makefile |    8 +++++---
- 1 files changed, 5 insertions(+), 3 deletions(-)
+ Makefile |   17 +++++++++++++----
+ 1 files changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 7add072..369bdc0 100644
+index 7add072..1b62998 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -46,7 +46,7 @@ OBJS     = main.o vcfindex.o tabix.o \
+@@ -46,9 +46,11 @@ OBJS     = main.o vcfindex.o tabix.o \
             ccall.o em.o prob1.o kmin.o # the original samtools calling
  INCLUDES = -I. -I$(HTSDIR)
  
@@ -19,17 +19,29 @@ index 7add072..369bdc0 100644
 +prefix      = /usr
  exec_prefix = $(prefix)
  bindir      = $(exec_prefix)/bin
++libdir      = $(exec_prefix)/lib/bcftools
++sharedir    = $(prefix)/share/bcftools
  mandir      = $(prefix)/share/man
-@@ -144,8 +144,10 @@ docs: bcftools.1 bcftools.html
+ man1dir     = $(mandir)/man1
  
+@@ -142,10 +144,17 @@ bcftools.html: bcftools.txt
+ 
+ docs: bcftools.1 bcftools.html
+ 
++dest_bindir   = $(DESTDIR)$(bindir)
++dest_libdir   = $(DESTDIR)$(libdir)$(PACKAGE_VERSION)
++dest_sharedir = $(DESTDIR)$(sharedir)$(PACKAGE_VERSION)
++dest_mandir   = $(DESTDIR)$(man1dir)
++
  install: $(PROG)
- 	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
+-	$(INSTALL_DIR) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
 -	$(INSTALL_PROGRAM) $(PROG) plot-vcfstats vcfutils.pl $(DESTDIR)$(bindir)
 -	$(INSTALL_DATA) bcftools.1 $(DESTDIR)$(man1dir)
-+	$(INSTALL_PROGRAM) -T $(PROG) $(DESTDIR)$(bindir)/$(PROG)$(PACKAGE_VERSION)
-+	$(INSTALL_PROGRAM) -T plot-vcfstats $(DESTDIR)$(bindir)/plot-vcfstats$(PACKAGE_VERSION)
-+	$(INSTALL_PROGRAM) -T vcfutils.pl $(DESTDIR)$(bindir)/vcfutils$(PACKAGE_VERSION)
-+	$(INSTALL_DATA) -T bcftools.1 $(DESTDIR)$(man1dir)/bcftools$(PACKAGE_VERSION).1
++	$(INSTALL_DIR) $(dest_bindir) $(dest_libdir) $(dest_sharedir) $(dest_mandir)
++	$(INSTALL_PROGRAM) -T $(PROG) $(dest_bindir)/$(PROG)$(PACKAGE_VERSION)
++	$(INSTALL_PROGRAM) plot-vcfstats $(dest_libdir)
++	$(INSTALL_PROGRAM) vcfutils.pl $(dest_sharedir)
++	$(INSTALL_DATA) -T bcftools.1 $(dest_mandir)/bcftools$(PACKAGE_VERSION).1
  
  clean: testclean
  	-rm -f gmon.out *.o *~ $(PROG) version.h plugins/*.so
