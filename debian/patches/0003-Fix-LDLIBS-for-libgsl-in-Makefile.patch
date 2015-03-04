@@ -8,7 +8,7 @@ Change -lcblas to -lgslcblas in Makefile
  1 files changed, 1 insertions(+), 1 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 35d251d..16ac34c 100644
+index cfec586..083c707 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -52,7 +52,7 @@ INCLUDES = -I. -I$(HTSDIR)

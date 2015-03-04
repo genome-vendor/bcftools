@@ -1,3 +1,9 @@
+bcftools1.2 (1.2-2) lucid; urgency=low
+
+  * Change install location for misc programs
+
+ -- Ian Ferguson <iferguso@genome.wustl.edu>  Wed, 04 Mar 2015 15:13:47 -0600
+
 bcftools1.1 (1.1-2) lucid; urgency=low
 
   * Change install location for misc programs
